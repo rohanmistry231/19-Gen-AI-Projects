@@ -1,0 +1,7 @@
+langchain
+langchain-community
+pypdf
+streamlit
+chromadb==0.4.4
+boto3
+python-dotenv
