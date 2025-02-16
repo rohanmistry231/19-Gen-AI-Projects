@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chatbot</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: rgb(205, 204, 211);
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chat-container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+      overflow: hidden;
+    }
+
+    .header {
+      background-color: #0b041e;
+      color: #fff;
+      padding: 20px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .chat-form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 0 20px;
+    }
+
+    #user-input {
+      flex-grow: 1;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-right: 10px;
+    }
+
+    #submitBtn {
+      background-color: rgb(13, 2, 28);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submitBtn:hover {
+      background-color: #11114b;
+    }
+
+    #result {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      background-color: #f8f8f8;
+      min-height: 100px;
+      overflow-wrap: break-word;
+      margin: 0 20px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chat-container">
+    <h1 class="header">Vertexai LLM Powered Chatbot</h1>
+    <form class="chat-form" id="chat-form">
+      <br></br>
+      <br></br>
+      <br></br>
+
+      <input
+        type="text"
+        id="user-input"
+        name="user_input"
+        placeholder="Your query..."
+      />
+      <button type="submit" id="submitBtn">Send</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    window.onload = function () {
+      document
+        .getElementById("chat-form")
+        .addEventListener("submit", function (event) {
+          // Prevent the form from submitting and refreshing the page
+          event.preventDefault();
+
+          let userInput = document.getElementById("user-input").value;
+          let url = `/gemini?user_input=${encodeURIComponent(userInput)}`;
+
+          fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+              let content = data.content;
+              let resultDiv = document.getElementById("result");
+              resultDiv.innerHTML = content;
+            })
+            .catch((error) => {
+              console.error("Error fetching gemini response:", error);
+            });
+        });
+    };
+  </script>
+</body>
+</html>
