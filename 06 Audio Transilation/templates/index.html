@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <title>Upload an audio file</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+        body {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        nav {
+            width: 100%;
+            background: #333;
+            height: 50px;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+      nav a{
+            color: white;
+    text-decoration: none;
+      }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        @media (max-width: 600px) {
+            form {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+    <h1>Upload an audio file</h1>
+    <form method="post" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <input type="text" name="language" placeholder="Language">
+      <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
